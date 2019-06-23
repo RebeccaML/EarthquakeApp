@@ -1,0 +1,12 @@
+h1 {
+    color: magenta;
+}
+
+h2 {
+    color: maroon;
+}
+
+table, th, td {
+    padding: 5px;
+    color: blue;
+}
