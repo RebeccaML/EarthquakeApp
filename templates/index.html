@@ -4,29 +4,37 @@
 <head>
     <meta charset="UTF-8">
     <title>Earthquake Tracker</title>
-    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"/>
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
 </head>
 
 <body>
-<h1>Earthquake Tracker</h1>
-<h2>{{ title }}</h2>
-<p>{{ count }}</p>
-<table>
-    <thead>
-        <th>Magnitude</th>
-        <th>Time</th>
-        <th>Location</th>
-    </thead>
-    <tbody>
-{% for event in events %}
-<tr>
-    <td>{{ event["magnitude"] }}</td>
-    <td>{{ event["time"] }}</td>
-    <td>{{ event["location"] }}</td>
-</tr>
-{% endfor %}
-</tbody>
-</table>
+    <header>
+        <h1>Earthquake Tracker</h1>
+    </header>
+    <div class="container">
+        <h2>{{ title }}</h2>
+        <p>{{ count }}</p>
+        <button><a href="{{ '/fetch' }}">Update Data</a></button>
+        <button><a href="{{ '/' }}">Sort by Date</a></button>
+        <button><a href="{{ '/mag' }}">Sort by Magnitude</a></button>
+        <table>
+            <thead>
+                <th>Magnitude</th>
+                <th>Time</th>
+                <th>Location</th>
+            </thead>
+            <tbody>
+                {% for event in events %}
+                <tr>
+                    <td>{{ event["magnitude"] }}</td>
+                    <td>{{ event["time"] }}</td>
+                    <td>{{ event["location"] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <script src="index.js"></script>
 </body>
 
 </html>

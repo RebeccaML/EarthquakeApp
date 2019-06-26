@@ -1,6 +1,6 @@
 # Example file for parsing and processing JSON
 # From Learning Python on Lynda.com
-# I'm plannning on expanding upon this and making it into a web app that displays earthquake info
+# I'm planning on expanding upon this and making it into a web app that displays earthquake info
 
 import urllib.request
 import json
@@ -8,7 +8,7 @@ import sys
 import datetime
 
 
-def get_data():
+def get_data(query):
     urlData = "http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_day.geojson"
     webUrl = urllib.request.urlopen(urlData)
     if (webUrl.getcode() == 200):
@@ -24,6 +24,10 @@ def get_data():
                 "time": date,
                 "location": i["properties"]["place"]
             })
-        return [title, count, earthquake_info]
+        if query == "date":
+            return [title, count, earthquake_info]
+        else:
+            earthquakes = sorted(earthquake_info, key=lambda k: k["magnitude"])
+            return [title, count, earthquakes]
     else:
         return "Error, cannot parse results."
